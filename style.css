@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 4vh 8%;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.66);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2), 
+              0 2px 2px rgba(0,0,0,0.2), 
+              0 4px 4px rgba(0,0,0,0.2), 
+              0 8px 8px rgba(0,0,0,0.2),
+              0 16px 16px rgba(0,0,0,0.2);
+}
+
+.navbar {
+  gap: 100px;
+  display: flex;
+}
+
+.navbar a {
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.5s, opacity 0.75s;
+  opacity: 0;
+}
+
+.navbar a:hover::before {
+  width: 120%;
+  opacity: 1;
+}
+
+body {
+  background: url('images/vegetables-set-left-black-slate.jpg') no-repeat;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  margin: 100px auto;
+  max-width: 1100px;
+}
+
+.wrapper nav {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper .items {
+  display: flex;
+  max-width: 720px;
+  width: 50%;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.items span {
+  padding: 7px 25px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #ca8d3c;
+  border-radius: 50px;
+  border: 2px solid #ca8d3c;
+  transition: all 0.3s ease;
+}
+
+.items span.active,
+.items span:hover {
+  color: #fff;
+  background: #ca8d3c;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.gallery .image {
+  width: 25%;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.gallery .image img {
+  width: 95%;
+  height: 75%;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+}
+
+.gallery .image:hover img {
+  transform: scale(1.1);
+}
