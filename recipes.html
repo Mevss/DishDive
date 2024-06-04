@@ -41,6 +41,12 @@
                                 </a>
                             </li>
                             <li class="nav-link">
+                                <a href="favourites.html">
+                                    <i class='bx bx-like'></i>
+                                    <span class="text nav-text">Favourites</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
                                 <a href="contact.html">
                                     <i class='bx bx-mail-send'></i>
                                     <span class="text nav-text">Contact</span>
@@ -60,72 +66,47 @@
                         <button data-name="vegetarian">Vegetarian</button>
                         <button data-name="vegan">Vegan</button>
                     </div>
+                    <button class="add-recipe" onclick="openPopupRecipe()">Add a recipe</button>
                 </div>
-
                 <div class="food-cards">
-                    <div class="card" data-name="meat" onclick="toggleBlur()">
-                        <img src="images/image-2.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Burger</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-name="vegetarian" onclick="toggleBlur()">
-                        <img src="images/image-1.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Tost</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-name="vegan" onclick="toggleBlur()">
-                        <img src="images/image-3.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Vegan</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-name="meat" onclick="toggleBlur()">
-                        <img src="images/image-8.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Meat</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-name="vegetarian" onclick="toggleBlur()">
-                        <img src="images/image-7.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Vegetarian</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-name="vegan" onclick="toggleBlur()">
-                        <img src="images/image-5.jpg" alt=""/>
-                        <div class="card-body">
-                            <h6 class="card-title">Vegan</h6>
-                            <p class="card-text">Lorem uopgsdfsgf</p>
-                        </div>
-                    </div>
-                    
+                   
                 </div>
                 
             </div>
         </div>
-        <div id="container-popup">
+        <div id="container-popup" class="inactive">
             <div class="popup-content">
-                <img src="images/image-1.jpg">
+                <div class="exit-icon"><i class='bx bxs-exit' onclick="closePopup()"></i></div>
+                <img id="popup-image" src="">
                 <div class="popup-info">
-                    <p>Info1</p>
-                    <p>Info2</p>
+                    <h4 id="popup-title"></h4>
+                    <p id="popup-description"></p>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus distinctio consequuntur ipsam cumque tempora error, 
-                    explicabo enim ratione voluptate consequatur ullam facilis ut, adipisci inventore unde qui, quod quidem esse!
-                </p>
-                <a href="#" onclick="toggleBlur()">Close</a>
+                <p id="popup-detail"></p>
+                <button class="popup-button" id="like-button"><i class='bx bx-like'></i>Like this recipe!</button>
+                <button class="popup-button" id="favourite-button"><i class='bx bx-bookmark-plus'></i>Favourite this recipe!</button>
+            </div>
+        </div>
+        
+        <div id="container-popup-add" class="inactive">
+            <div class="popup-content-add">
+                <div class="exit-icon"><i class='bx bxs-exit' onclick="closePopupAdd()"></i></div>
+                <form id="form1" action="/action_page.php">
+                    <input type="file" id="image-add-recipe" name="filename">
+                </form>
+                <div class="forms">
+                    <label id="title-add" for="title-add">Recipe title</label>
+                    <input type="text" id="title-add-recipe" class="input_1" name="firstname" placeholder="Add recipe title..">
+                    <label id="title-add" for="title-add">Recipe description</label>
+                    <input type="text" id="description-add-recipe" class="input_1" name="firstname" placeholder="Add recipe description...">
+                    <label id="title-add" for="category-select">Recipe type</label>
+                    <select id="category-select">
+                        <option value="meat">Meat</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                </div>
+                <button class="popup-button" id="popup-button-recipe">Dodaj</button>
             </div>
         </div>
     </body>

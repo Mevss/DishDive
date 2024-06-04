@@ -9,7 +9,7 @@
 body {
     min-height: 100vh;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body::before {
@@ -153,7 +153,7 @@ body::before {
 .container-promotion{
     padding: 22px;
     border-radius: 24px;
-    background: rgb(75, 75, 75);
+    background: rgb(115, 115, 115);
     display: grid;
     grid-template-areas: 
             "b b a"
@@ -168,19 +168,21 @@ body::before {
 }
 .container-promotion .promotion-picture img{ 
     width: 90%;
-    height: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 .container-promotion .promotion-title{
     display: flex;
     grid-area: a;
-    background-color: red;
+    font-size: 26px;
+    font-weight: bold;
     align-items:center;
     justify-content:center;
 }
 .container-promotion .promotion-description{
+    font-size: 18px;
     padding: 15px;
     grid-area: c;
-    background-color: green;
 }
 /* RECIPE */
 .container-main{
@@ -198,7 +200,19 @@ body::before {
     gap: 10px;
     flex-wrap: wrap;
 }
-.filter-wrapper button{
+
+.filter-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-wrapper .add-recipe{
+    align-items: flex-end;
     padding: 10px 20px;
     font-size: 20px;
     border: none;
@@ -209,15 +223,24 @@ body::before {
     z-index: 10;
     position: relative;
 }
+.filter-wrapper button{
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    z-index: 10;
+    position: relative;
+    transition: 0.3s;
+}
 .filter-wrapper button:hover{
     background: rgb(134, 188, 233);
     box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    transition: 0.3s;
 }
 
-.filter-wrapper {
-    position: relative;
-    overflow: hidden;
-}
 
 .filter-buttons {
     position: absolute;
@@ -262,7 +285,7 @@ body::before {
 }
 .card:hover{
     transition: 0.3s;
-    box-shadow: 0 0 24px rgba(0,0,0,0.8);
+    box-shadow: 0 0 16px rgba(0,0,0,0.75);
     transform: scale(1.1);
 }
 
@@ -288,40 +311,74 @@ body::before {
     font-size: 16px;
     color: #333;
 }
+.like-section{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.like-section .likes-count{
+    margin-right: 3px;
+    color: green;
+}
+.like-section i{
+    color: green;
+    font-size: 18px;
+}
 
 
 /* POPUP */
-#container-popup{
-    position: absolute;
-    top: 40%;
+#container-popup {
+    position: fixed;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
-    height: 60%;
+    width: 30%;
+    height: 75%;
     padding: 30px;
-    box-shadow: 0 0 18px rgba(0,0,0,0.6);
     background: wheat;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
     visibility: hidden;
     opacity: 0;
-    transition: 0.4s;
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+    padding: 0;
+    overflow: hidden;
+    flex-grow: 1;
+
 }
-#container-popup.active{
-    top: 50%;
+
+#container-popup.active {
     visibility: visible;
     opacity: 1;
-    transition: 0.4s;
+    transition: visibility 0s linear 0s, opacity 0.3s linear;
 }
 
 .popup-content{
+    height: 100%;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     align-items: center;
+    flex-grow: 1;
 }
-.popup-content img{
-    width: 50%;
-    max-height: 50%;
-    object-fit: contain;
+.exit-icon{
+    position: absolute;
+    top: 2%;
+    left:92%;
+}
+.exit-icon i{
+    font-size: 32px;
+    transition: 0.1s;
+}
+.exit-icon i:hover{
+    font-size: 34px;
+    transition: 0.1s;
+}
+.popup-content img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
 }
 
 .popup-content p{
@@ -329,20 +386,154 @@ body::before {
 }
 .popup-info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    width: 60%;
+    width: 70%;
+    align-items: center;
+    gap: 14px;
 }
 
+#popup-title{
+    font-size: 26px;
+}
+#popup-description{
+    font-size: 18px;
+}
+.popup-button{
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    border: 1px solid #cbd5e0;
+    line-height: 26px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: 0.5s;
+    width: 38%;
+}
+.popup-button i{
+    margin-right: 5px;
+    font-size: 18px;
+}
+.popup-button:hover{
+    transition: 0.5s;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 0 0 14px rgba(0,0,0,0.25);
+}
 
+/* Add recipe popup */
+#container-popup-add {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 75%;
+    padding: 30px;
+    background: wheat;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+    padding: 0;
+    overflow: hidden;
+    flex-grow: 1;
 
+}
+#container-popup-add.active {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.3s linear;
+}
 
+.popup-content-add{
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    flex-grow: 1;
+}
+#form1{
+    margin-top: 20%;
+}
+.forms{
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 26px;
+    width: 50%;
+}
+#title-add{
+    margin-top: 10px;
+    text-align: center;
+}
+#popup-button-recipe{
+    margin-top: 66px;
+}
+/* FAVOURITE */
+
+.most-liked-container{
+    position: fixed;
+    top: 26%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: auto;
+    padding: 0;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+.favourite{
+    position: absolute;
+    width: 22%;
+    top: 48%;
+    left: 47%;
+    height: 4%;
+    text-align: center;
+    padding: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    background-color: wheat;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+
+.favourite-food-cards {
+    position: absolute;
+    display:flex;
+    margin-top:50px;
+    gap:30px;
+    flex-wrap: wrap;
+    width: 60%;
+    top: 50%;
+    left:28%;
+    /* background-color: #fff; */
+}
+.favourite-card{
+    flex-grow: 1;
+    flex-basis: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.favourite-card:hover{
+    transition: 0.3s;
+    box-shadow: 0 0 16px rgba(0,0,0,0.75);
+    transform: scale(1.1);
+}
 /* CONTACT */
 .container-contact{
     position: relative;
     max-width: 60%;
     width: 100%;
-    margin: 125px auto;
+    margin: 75px auto;
     margin-left: 26%;
     display: flex;
     flex-direction: column;
@@ -353,13 +544,66 @@ body::before {
     text-align: center;
     font-size: 28px;
     font-weight: 600;
-    height: 60  px;
+    height: 50px;
     align-items:center;
     justify-content:center;
+    border-radius: 8px;
 }
 .contact-body{
     margin-top: 50px;
     background: rgb(238, 238, 238);
     font-size: 20px;
     padding: 25px;
+    border-radius: 8px;
+
 }
+.container-contact iframe{
+    margin-top: 25px;
+    width: 100%;
+}
+
+  .input_1 {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .input_1::placeholder {
+    color: transparent;
+  }
+  
+  .input_1:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+
+  .input_1:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+  }
+  
+  .input_1:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+  }
+  
+  .form__field:required,
+  .form__field:invalid {
+    box-shadow: none;
+  }
+  
